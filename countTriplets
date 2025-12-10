@@ -1,0 +1,30 @@
+class Solution {
+    public int countTriples(int n) {
+        if(n<5){
+            return 0;
+        }
+        int count = 0;
+        ArrayList<Integer> array = new ArrayList<>(); 
+
+         for(int i =5; i<=n;i++){
+            array.add(i*i);
+        }
+       
+        for(int i =1;i<=n;i++){
+            for(int k=i+1;k<=n;k++){
+                int squareSum =(i*i)+(k*k);
+
+                if(array.contains(squareSum))
+                {
+                    count++;
+                }
+            }
+        }
+
+       
+
+        //System.out.println(array.toString());
+
+        return count*2;
+    }
+}
