@@ -1,0 +1,50 @@
+class Solution {
+    public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
+       List<String> strElec = new ArrayList<>();
+       List<String> strGrocery = new ArrayList<>();
+       List<String> strPharmacy = new ArrayList<>();
+       List<String> strRestaurant = new ArrayList<>();
+
+       for(int i = 0; i<code.length; i++){
+            if(businessLine[i].equals("electronics") && isActive[i] == true){
+                strElec.add(code[i]);
+            }else if(businessLine[i].equals("grocery") && isActive[i] == true){
+                strGrocery.add(code[i]);
+            }else if(businessLine[i].equals("pharmacy") && isActive[i] == true){
+                strPharmacy.add(code[i]);
+            }else if(businessLine[i].equals("restaurant") && isActive[i] == true){
+                strRestaurant.add(code[i]);
+            }
+       }
+
+       Collections.sort(strElec);
+       Collections.sort(strGrocery);
+       Collections.sort(strPharmacy);
+       Collections.sort(strRestaurant);
+
+        List<String> list = new ArrayList<>();
+
+            for(String str: strElec){
+                if((!str.isEmpty()) && str.matches("^[a-zA-Z0-9_]+$"))
+                list.add(str);  
+            }
+              
+            for(String str: strGrocery){
+                if((!str.isEmpty()) && str.matches("^[a-zA-Z0-9_]+$"))
+                list.add(str);  
+            }
+              
+            for(String str: strPharmacy)
+            {
+                if((!str.isEmpty()) && str.matches("^[a-zA-Z0-9_]+$"))
+                list.add(str);  
+            }
+              
+            for(String str: strRestaurant){
+                if((!str.isEmpty()) && str.matches("^[a-zA-Z0-9_]+$"))
+                list.add(str);  
+            }
+             
+            return list;    
+    }
+}
