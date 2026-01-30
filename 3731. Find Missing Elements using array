@@ -1,0 +1,60 @@
+class Solution {
+    public List<Integer> findMissingElements(int[] nums) {
+        
+        int smallest = nums[0];
+        int highest = nums[0];
+        List<Integer> list = new ArrayList<>();
+       // Map<Integer, Integer> map = new HashMap<>();
+        int[] arr = new int[101];
+        for(int i=0;i<nums.length; i++){
+
+            if(nums[i]<smallest){
+            
+                smallest = nums[i];
+            
+            }
+
+            if(nums[i]>highest){
+            
+                highest = nums[i];
+            
+            }
+
+           // map.put(nums[i],1);
+            arr[nums[i]]=1;
+
+        }
+
+        if((highest - smallest)+1 == nums.length){
+
+            return list;
+        
+        }
+
+        for(int i=smallest;i<highest; i++){
+            if(arr[i] != 1){
+                list.add(i);
+            }
+        }
+       // int number_of_missing_elements = (highest - lowest) + 1 - nums.length;
+
+        // for(int i=smallest;i<highest; i++){
+        //     if(map.containsKey(i)){
+        //         continue;
+        //     }else{
+        //         list.add(i);
+        //     }
+        // }
+        return list;
+            
+        }
+    }
+
+3731. Find Missing Elements
+Solved
+Easy
+Topics
+premium lock iconCompanies
+Hint
+
+You are given an integer array nums consisting of unique integers.
