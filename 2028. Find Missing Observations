@@ -1,0 +1,63 @@
+2028. Find Missing Observations
+
+class Solution {
+
+    public int[] missingRolls(int[] rolls, int mean, int n) {
+
+        int sumRoll = 0;
+        int missingSum = 0;
+
+        int[] finalArray = new int[n];
+
+        for(int i = 0; i<rolls.length; i++){
+
+            sumRoll += rolls[i];
+        
+        }
+
+        missingSum = (mean * (rolls.length + n)) - sumRoll;
+
+        int approx_value = missingSum / n;
+
+        if(approx_value > 6 || approx_value < 1){
+
+            return new int[0];
+        
+        }else {
+
+            int sum =0;
+            
+            for(int i = 0; i< n; i++){
+            
+                finalArray[i] = approx_value;
+                sum += approx_value;
+            
+            }
+
+            for(int i=0; i<n; i++){
+                int diff = 6 - finalArray[i];
+                if(diff > 0 && (missingSum - sum) <= diff){
+                    finalArray[i] += (missingSum - sum); 
+                    return finalArray;
+                }else if(diff > 0 && (missingSum - sum) >= diff){
+                    finalArray[i] = 6;
+                    sum += diff;
+                }
+            }
+            
+            if(missingSum - sum > 0 ){
+            // {
+              
+            //    finalArray[n-1] = missingSum-sum;
+            
+            // }else{
+
+                return new int[0];
+            
+            }
+              
+        }
+
+        return finalArray;
+    }
+}
