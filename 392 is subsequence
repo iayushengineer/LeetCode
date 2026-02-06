@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+
+        if(s.isEmpty() == false && t.isEmpty() == false){
+        char[] arrayS = s.toCharArray();
+        char[] arrayT = t.toCharArray();
+        int j=0;
+        for(int i =0; i< arrayT.length; i++){
+            if(j<arrayS.length && arrayT[i] == arrayS[j]){
+                j++;
+            }
+        }
+        if(j==arrayS.length){
+            return true;
+        }
+        }else if(s.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+}
