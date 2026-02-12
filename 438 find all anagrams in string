@@ -1,0 +1,71 @@
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        
+        List<Integer> list = new ArrayList<>();   
+
+        int[] arr = new int[26];
+        int[] arr2 = new int[26];
+        int length =0;
+        int low=0;
+        
+        for(int i =0; i<p.length();i++){
+
+            arr[p.charAt(i) - 'a']++;
+            
+        }
+
+        for(int i=0; i<s.length(); i++){
+
+            arr2[s.charAt(i)-'a']++;
+            length = i-low+1;
+
+            while(length > p.length()){
+
+                arr2[s.charAt(low)-'a']--;
+                low++;
+                length = i - low + 1;
+
+            }
+
+                if(isAnagram(arr,arr2)){
+                    list.add(low);
+                }
+
+        }
+        return list;
+        // for(int i = 0; i<s.length(); i++){
+        //     if(arr[s.charAt(i)-'a'] == 1){
+
+
+        //         arr[s.charAt(i)-'a']--;
+        //         count++;
+
+
+        //     }
+            
+        //     if(count>=p.length()){
+                
+        //         //total++;
+        //         for(int j=0; j< arr.length;j++){
+        //             arr[j] = arr2[j];
+        //         }
+        //        // arr=arr2;
+        //         list.add(i-p.length()+1);
+        //         i= i-count+1;
+        //         count = 0;
+
+        //     }
+
+        // }
+        // return list;
+    }
+
+    public boolean isAnagram(int[] arr, int[] arr2 ){
+
+        for(int i=0; i<arr.length;i++){
+            if (arr[i] != arr2[i]) return false;
+        }
+
+        return true;
+    }
+}
